@@ -4,6 +4,7 @@ Created on Tue Jan 24 16:27:57 2023
 
 @author: PGS2KOR
 """
+from create_output_in_csv_format import create_csv_format_string
 
 def check_status_of_continuity_or_repeatidity_of_data(value):
     if(value <= 1):
@@ -33,5 +34,6 @@ def get_continuous_range_and_number_of_readings(samples):
             continuous_range_indexes.append(value)
     continuous_range.append([samples[continuous_range_indexes[0]], samples[continuous_range_indexes[-1]]])
     number_of_readings.append(len(continuous_range_indexes))
+    create_csv_format_string(continuous_range, number_of_readings)
     return (continuous_range, number_of_readings)
 
