@@ -6,4 +6,4 @@ Created on Tue Jan 24 18:36:20 2023
 """
 
 def check_validity_of_input_data(input_samples):
-    return type(input_samples)
+    return str(type(input_samples))
