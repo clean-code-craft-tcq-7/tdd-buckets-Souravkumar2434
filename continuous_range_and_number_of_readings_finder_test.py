@@ -9,7 +9,10 @@ from continuous_range_finder import get_continuous_range,\
     get_sorted_array, check_status_of_continuity_or_repeatidity_of_data,\
         get_difference_between_the_consecutive_samples,\
             calculate_continuous_range
-from number_of_readings_in_continuous_range_finder import get_number_of_readings_in_continuous_range
+from number_of_readings_in_continuous_range_finder\
+    import get_number_of_readings_in_continuous_range
+from continuous_range_and_number_of_readings_finder\
+    import get_continuous_range_and_number_of_readings
 
 # check validity of data
 assert check_input_data_is_ok([]) == True
@@ -48,3 +51,11 @@ assert get_number_of_readings_in_continuous_range([[4, 5]]) == [2]
 assert get_number_of_readings_in_continuous_range([[4, 6]]) == [3]
 assert get_number_of_readings_in_continuous_range([[4, 7]]) == [4]
 assert get_number_of_readings_in_continuous_range([[4, 6] , [8, 10]]) == [3, 3]
+
+#continuous_range_and_number_of_readings test
+assert get_continuous_range_and_number_of_readings([]) == ([],[])
+assert get_continuous_range_and_number_of_readings([1]) == ([],[])
+assert get_continuous_range_and_number_of_readings([4, 5]) == ([[4, 5]],[2])
+assert get_continuous_range_and_number_of_readings([4, 5, 6]) == ([[4, 6]],[3])
+assert get_continuous_range_and_number_of_readings([4, 6, 5, 7]) == ([[4, 7]],[4])
+assert get_continuous_range_and_number_of_readings([4, 5, 6, 9, 8, 10]) == ([[4, 6], [8, 10]],[3, 3])
