@@ -54,6 +54,7 @@ assert get_number_of_readings_in_continuous_range([[4, 6] , [8, 10]]) == [3, 3]
 
 #continuous_range_and_number_of_readings test
 assert get_continuous_range_and_number_of_readings([]) == ([],[])
+assert get_continuous_range_and_number_of_readings('') == ([],[])
 assert get_continuous_range_and_number_of_readings([1]) == ([],[])
 assert get_continuous_range_and_number_of_readings([4, 5]) == ([[4, 5]],[2])
 assert get_continuous_range_and_number_of_readings([4, 5, 6]) == ([[4, 6]],[3])
