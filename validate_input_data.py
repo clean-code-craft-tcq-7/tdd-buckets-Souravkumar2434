@@ -6,4 +6,6 @@ Created on Tue Jan 31 12:46:06 2023
 """
 
 def check_input_data_is_ok(input_samples):
-    return
+    if (type(input_samples) == list):
+        return True
+    return False
