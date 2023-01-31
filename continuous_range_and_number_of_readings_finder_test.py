@@ -54,8 +54,8 @@ assert get_number_of_readings_in_continuous_range([[4, 7]]) == [4]
 assert get_number_of_readings_in_continuous_range([[4, 6] , [8, 10]]) == [3, 3]
 
 #creating output in csv format test
-assert create_csv_format_string([[4, 5]], [2]) == "Range, Readings\n4, 5, 2"
-assert create_csv_format_string([[4, 5], [7, 8]], [2, 2]) == "Range, Readings\n4, 5, 2\n7, 8, 2"
+assert create_csv_format_string([[4, 5]], [2]) == "Range, Readings\n4-5, 2"
+assert create_csv_format_string([[4, 5], [7, 8]], [2, 2]) == "Range, Readings\n4-5, 2\n7-8, 2"
 
 #continuous_range_and_number_of_readings test
 assert get_continuous_range_and_number_of_readings_and_generate_output([]) == ([],[])
