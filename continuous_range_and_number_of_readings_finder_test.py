@@ -12,7 +12,7 @@ from continuous_range_finder import get_continuous_range,\
 from number_of_readings_in_continuous_range_finder\
     import get_number_of_readings_in_continuous_range
 from continuous_range_and_number_of_readings_finder\
-    import get_continuous_range_and_number_of_readings
+    import get_continuous_range_and_number_of_readings_and_generate_output
 from output_in_csv_format import create_csv_format_string
 
 # check validity of data
@@ -53,15 +53,17 @@ assert get_number_of_readings_in_continuous_range([[4, 6]]) == [3]
 assert get_number_of_readings_in_continuous_range([[4, 7]]) == [4]
 assert get_number_of_readings_in_continuous_range([[4, 6] , [8, 10]]) == [3, 3]
 
-#continuous_range_and_number_of_readings test
-assert get_continuous_range_and_number_of_readings([]) == ([],[])
-assert get_continuous_range_and_number_of_readings('') == ([],[])
-assert get_continuous_range_and_number_of_readings([1]) == ([],[])
-assert get_continuous_range_and_number_of_readings([4, 5]) == ([[4, 5]],[2])
-assert get_continuous_range_and_number_of_readings([4, 5, 6]) == ([[4, 6]],[3])
-assert get_continuous_range_and_number_of_readings([4, 6, 5, 7]) == ([[4, 7]],[4])
-assert get_continuous_range_and_number_of_readings([4, 5, 6, 9, 8, 10]) == ([[4, 6], [8, 10]],[3, 3])
-
 #creating output in csv format test
 assert create_csv_format_string([[4, 5]], [2]) == "Range, Readings\n4, 5, 2"
 assert create_csv_format_string([[4, 5], [7, 8]], [2, 2]) == "Range, Readings\n4, 5, 2\n7, 8, 2"
+
+#continuous_range_and_number_of_readings test
+assert get_continuous_range_and_number_of_readings_and_generate_output([]) == ([],[])
+assert get_continuous_range_and_number_of_readings_and_generate_output('') == ([],[])
+assert get_continuous_range_and_number_of_readings_and_generate_output([1]) == ([],[])
+assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5]) == ([[4, 5]],[2])
+assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5, 6]) == ([[4, 6]],[3])
+assert get_continuous_range_and_number_of_readings_and_generate_output([4, 6, 5, 7]) == ([[4, 7]],[4])
+assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5, 6, 9, 8, 10]) == ([[4, 6], [8, 10]],[3, 3])
+
+
