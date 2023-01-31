@@ -24,10 +24,10 @@ Test Requirements:-
 2) To find continuous range
    a) pass [], continuous range should be [].
    b) pass [1] as input, continuous range should be [].
-   c) pass [4,5] as input, continuous range should be [[4-5]].
-   d) pass [4,5,6] as input, continuous range should be [[4-6]].
-   e) pass [4,6,5,7] as input, continuous range should be [[4-7]].
-   f) pass [4,5,6,9,8,10] as input, continuous range should be [[4-6], [8-10]].
+   c) pass [4,5] as input, continuous range should be [[4,5]].
+   d) pass [4,5,6] as input, continuous range should be [[4,6]].
+   e) pass [4,6,5,7] as input, continuous range should be [[4,7]].
+   f) pass [4,5,6,9,8,10] as input, continuous range should be [[4,6], [8,10]].
 
 3) To find number of readings in continuous range:-
    a) pass [], number of readings should be [].
