@@ -37,6 +37,6 @@ Test Requirements:-
    e) pass [4,5,6,9,8,10] as input, number of readings should be [3, 3].
 
 4) To check output of program in csv format:-
-   a) pass continuous range as [[4 - 5]] and number of readings as [2], output should be "Range, Readings\n4-5, 2"
-   b) pass continuous range as [[4 - 5], [7 - 8]] and number of readings as [2, 2], output should be "Range, Readings\n4-5, 2\n7-8, 2"
+   a) pass continuous range as [[4, 5]] and number of readings as [2], output should be "Range, Readings\n4, 5, 2"
+   b) pass continuous range as [[4, 5], [7, 8]] and number of readings as [2, 2], output should be "Range, Readings\n4, 5, 2\n7, 8, 2"
 
