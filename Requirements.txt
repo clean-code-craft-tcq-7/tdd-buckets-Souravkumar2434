@@ -18,8 +18,8 @@ Assumptions:-
 Test Requirements:-
 
 1) To validate input data
-   a) pass string as input data, the software should fail the test.
-   b) pass list as input data, the software should pass the test.
+   a) pass string as input data, the function should return False as output.
+   b) pass list as input data, the function should return True as output.
 
 2) To find continuous range
    a) pass [], continuous range should be [].
