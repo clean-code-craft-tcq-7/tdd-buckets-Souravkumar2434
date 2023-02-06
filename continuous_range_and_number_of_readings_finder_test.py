@@ -14,6 +14,8 @@ from number_of_readings_in_continuous_range_finder\
 from continuous_range_and_number_of_readings_finder\
     import get_continuous_range_and_number_of_readings_and_generate_output
 from output_in_csv_format import create_csv_format_string
+from A2D_12bit_converter_reader_and_output_generater import\
+    read_12bit_A2D_converter_and_generate_output
 
 # check validity of data
 assert check_input_data_is_ok([]) == True
@@ -66,4 +68,8 @@ assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5, 6]
 assert get_continuous_range_and_number_of_readings_and_generate_output([4, 6, 5, 7]) == ([[4, 7]],[4])
 assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5, 6, 9, 8, 10]) == ([[4, 6], [8, 10]],[3, 3])
 
+#A2D_12bit_converter_reader_and_output_generater test
+
+assert read_12bit_A2D_converter_and_generate_output([0, 400, 200, 1146]) == ([[0, 3]], [4])
+assert read_12bit_A2D_converter_and_generate_output([0, 400, 200, 1146, 2047, 2456, 4095]) == ([[0, 3], [5, 6]], [4, 2])
 
