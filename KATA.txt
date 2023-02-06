@@ -105,7 +105,7 @@ Refactoring will be done in 3 steps
 			b) method will return "Range, Readings\n4-5, 2\n7-8, 2", if ([[4, 5], [7, 8]], [2, 2]) are passed as input.
 			
 			
-3) Get continuous range, number of readings and generate output with simple method
+3) Get continuous range, number of readings and generate output from 12bit A2D converter with simple method
 
 def read_12bit_A2D_converter_and_generate_output(list samples)
 
@@ -120,3 +120,19 @@ Refactoring of this method is done in 2 step:
 	def convert_12bit_A2D_value_to_current_amps( int value)
 	
 	The method will take a 12bit integer value and will return a integer value of current.
+
+4) Get continuous range, number of readings and generate output from 10bit A2D converter with simple method
+
+def read_10bit_A2D_converter_and_generate_output(list samples)
+
+the method will take the list of samples from 10bit A2D converter and will return continuous range and number of readings and also will generate result in csv format.
+	a) the 12bit integer value has limits from 0 - 1022.
+	b) any value above 1022 will be considered as an error and it will not be considered for finding continuous range.
+
+Refactoring of this method is done in 2 step:
+	a) 10bit A2D value is converted into current(amps) with the help of pure function.
+	b) continuous range and number of readings will be returned by def get_continuous_range_and_number_of_readings_and_generate_output(list samples) method.
+	
+	def convert_10bit_A2D_value_to_current_amps( int value)
+	
+	The method will take a 10bit integer value and will return a integer value of current.
