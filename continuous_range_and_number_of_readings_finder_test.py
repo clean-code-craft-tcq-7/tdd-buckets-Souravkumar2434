@@ -50,11 +50,11 @@ assert calculate_continuous_range([4, 5, 6, 9, 8, 10], []) == [[4, 6], [8, 10]]
 
 
 #number of readings test
-assert get_number_of_readings_in_continuous_range([]) == []
-assert get_number_of_readings_in_continuous_range([[4, 5]]) == [2]
-assert get_number_of_readings_in_continuous_range([[4, 6]]) == [3]
-assert get_number_of_readings_in_continuous_range([[4, 7]]) == [4]
-assert get_number_of_readings_in_continuous_range([[4, 6] , [8, 10]]) == [3, 3]
+assert get_number_of_readings_in_continuous_range([], []) == []
+assert get_number_of_readings_in_continuous_range([[4, 5]], [4, 5]) == [2]
+assert get_number_of_readings_in_continuous_range([[4, 6]], [4, 5, 6]) == [3]
+assert get_number_of_readings_in_continuous_range([[4, 7]], [4, 5, 6, 7]) == [4]
+assert get_number_of_readings_in_continuous_range([[4, 6] , [8, 10]], [4, 5, 6, 8, 9, 10]) == [3, 3]
 
 #creating output in csv format test
 assert create_csv_format_string([[4, 5]], [2]) == "Range, Readings\n4-5, 2"
@@ -71,10 +71,10 @@ assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5, 6,
 
 #A2D_12bit_converter_reader_and_output_generater test
 
-assert read_12bit_A2D_converter_and_generate_output([0, 400, 200, 1146]) == ([[0, 3]], [4])
+assert read_12bit_A2D_converter_and_generate_output([0, 400, 700, 1146]) == ([[0, 3]], [4])
 
 #ignoring error readings tests
-assert read_12bit_A2D_converter_and_generate_output([0, 400, 200, 1146, 2047, 2456, 4095]) == ([[0, 3], [5, 6]], [4, 2])
+assert read_12bit_A2D_converter_and_generate_output([0, 400, 700, 1146, 2047, 2456, 4095]) == ([[0, 3], [5, 6]], [4, 2])
 assert read_12bit_A2D_converter_and_generate_output([4095, 4096, 4097, 4098, 4099]) == ([], [])
 
 #12bit_input_into_amps_converter test
