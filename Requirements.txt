@@ -7,12 +7,15 @@ Software Requirements:-
    b) for empty list also it should be empty
 3) Number of readings in a continuous range should be found
 4) Output of the continuous range and number of readings should be in a csv format
-
+5) The software should consider readings from 0 - 4094 as valid i.e 0 - 10amps for 12-bit A2D converter.
+	a) A value over 4094 is invalid and it should be discarded.
+	b) A2D value to current value conversion mechanism should be there and it should be rounded off to nearest integer.
+6) The software should consider readings from 0 - 1-23 as valid i.e -15amps - 15amps for 10bit A2D converter.
+    a) Absolute value of current should be considered for calculating range.
 
 Assumptions:-
 
-1) Input data should always be positive as current values cannot be negative.
-2) Continuous range for single value should be empty.
+1) Continuous range for single value should be empty.
 
 
 Test Requirements:-
@@ -33,10 +36,22 @@ Test Requirements:-
    a) pass [], number of readings should be [].
    b) pass [4,5] as input, number of readings should be [2].
    c) pass [4,5,6] as input, number of readings should be [3].
-   d) pass [4,6,5,7] as input, number of readings should be [[4].
+   d) pass [4,6,5,7] as input, number of readings should be [4].
    e) pass [4,5,6,9,8,10] as input, number of readings should be [3, 3].
 
 4) To check output of program in csv format:-
    a) pass continuous range as [[4, 5]] and number of readings as [2], output should be "Range, Readings\n4-5, 2"
    b) pass continuous range as [[4, 5], [7, 8]] and number of readings as [2, 2], output should be "Range, Readings\n4-5, 2\n7-8, 2"
+
+5) To convert the 12 bit A2D value in amps:-
+   a) pass 0 as input, current value should be 0amps.
+   b) pass 4094 as input, current value should be 10amps.
+   c) pass 4095 as input, invalid input should be returned.
+   d) pass 1146 as input, current value should be 3amps.
+   
+6) To convert the 10-bit A2D value in amps:-
+   a) pass 0 as input, current value should be -15amps.
+   b) pass 511 as input, current value should be 0amps.
+   c) pass 1022 as input, current value should be 15amps.
+   
 
