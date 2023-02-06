@@ -1,7 +1,5 @@
 Assumptions:- 
-
-	a) no negative values will be passed to the method.
-	b) if only 1 value is passed in the list to the method then continuous range and number of reading is supposed to be empty.
+	a) if only 1 value is passed in the list to the method then continuous range and number of reading is supposed to be empty.
 
 1) Check validity of data with a simple method
 
@@ -92,16 +90,33 @@ Refactoring will be done in 3 steps
 
 	2) Get number of readings in continuous range with simple method
 	
-	def get_number_of_readings_in_continuous_range(list continuousrange)
+	def get_number_of_readings_in_continuous_range(list continuousrange, list samples)
 	
-	The method will take list of continuous range and will give a list of number of readings in that continuous range.
-			a) method will return [2] if [[4, 5]] is passed as input.
-			b) method will return [2, 3] if [[4, 5] , [7, 9]] is passed as input.
+	The method will take list of continuous range and list of samples and will give a list of number of readings in that continuous range.
+			a) method will return [2] if ([[4, 5]], [4, 5]) is passed as input.
+			b) method will return [2, 3] if ([[4, 5] , [7, 9]],[4, 5, 7, 8, 9]) is passed as input.
 	
 	3) Generate output in csv format with simple method
 	
 	def create_csv_format_string(list continuous_range, list number_of_readings)
 	
 	The method will take 2 arguments as input, first will be list of continuous range and second will be list of number of readings and will return a string.
-			a) method will return "Range, Readings\n4, 5, 2", if ([[4, 5]], [2]) are passed as input.
-			b) method will return "Range, Readings\n4, 5, 2\n7, 8, 2", if ([[4, 5], [7, 8]], [2, 2]) are passed as input.
+			a) method will return "Range, Readings\n4-5, 2", if ([[4, 5]], [2]) are passed as input.
+			b) method will return "Range, Readings\n4-5, 2\n7-8, 2", if ([[4, 5], [7, 8]], [2, 2]) are passed as input.
+			
+			
+3) Get continuous range, number of readings and generate output with simple method
+
+def read_12bit_A2D_converter_and_generate_output(list samples)
+
+the method will take the list of samples from 12bit A2D converter and will return continuous range and number of readings and also will generate result in csv format.
+	a) the 12bit integer value has limits from 0 - 4094.
+	b) any value above 4094 will be considered as an error and it will not be considered for finding continuous range.
+
+Refactoring of this method is done in 2 step:
+	a) 12bit A2D value is converted into current(amps) with the help of pure function.
+	b) continuous range and number of readings will be returned by def get_continuous_range_and_number_of_readings_and_generate_output(list samples) method.
+	
+	def convert_12bit_A2D_value_to_current_amps( int value)
+	
+	The method will take a 12bit integer value and will return a integer value of current.
