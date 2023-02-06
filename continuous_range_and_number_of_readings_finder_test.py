@@ -17,6 +17,9 @@ from output_in_csv_format import create_csv_format_string
 from A2D_12bit_converter_reader_and_output_generater import\
     read_12bit_A2D_converter_and_generate_output,\
         convert_12bit_A2D_value_to_current_amps
+from A2D_10bit_converter_reader_and_output_generater import\
+    convert_10bit_A2D_value_to_current_amps,\
+        read_10bit_A2D_converter_and_generate_output
 
 # check validity of data
 assert check_input_data_is_ok([]) == True
@@ -82,5 +85,21 @@ assert read_12bit_A2D_converter_and_generate_output([4095, 4096, 4097, 4098, 409
 assert convert_12bit_A2D_value_to_current_amps(0) == 0
 assert convert_12bit_A2D_value_to_current_amps(400) == 1
 assert convert_12bit_A2D_value_to_current_amps(4094) == 10
+
+#A2D_10bit_converter_reader_and_output_generater test
+
+assert read_10bit_A2D_converter_and_generate_output([0, 34, 68, 102]) == ([[12, 15]], [4])
+
+#ignoring error readings tests
+assert read_10bit_A2D_converter_and_generate_output([0, 34, 68, 102, 511, 545, 580]) == ([[0, 2], [12, 15]], [3, 4])
+assert read_10bit_A2D_converter_and_generate_output([1024, 1025, 1026, 1027, 1028]) == ([], [])
+
+#12bit_input_into_amps_converter test
+
+assert convert_10bit_A2D_value_to_current_amps(0) == -15
+assert convert_10bit_A2D_value_to_current_amps(1022) == 15
+assert convert_10bit_A2D_value_to_current_amps(511) == 0
+assert convert_10bit_A2D_value_to_current_amps(102) == -12
+assert convert_10bit_A2D_value_to_current_amps(920) == 12
 
 
