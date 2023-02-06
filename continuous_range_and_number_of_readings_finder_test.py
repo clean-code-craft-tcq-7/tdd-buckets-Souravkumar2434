@@ -15,7 +15,8 @@ from continuous_range_and_number_of_readings_finder\
     import get_continuous_range_and_number_of_readings_and_generate_output
 from output_in_csv_format import create_csv_format_string
 from A2D_12bit_converter_reader_and_output_generater import\
-    read_12bit_A2D_converter_and_generate_output
+    read_12bit_A2D_converter_and_generate_output,\
+        convert_12bit_A2D_value_to_current_amps
 
 # check validity of data
 assert check_input_data_is_ok([]) == True
@@ -71,5 +72,15 @@ assert get_continuous_range_and_number_of_readings_and_generate_output([4, 5, 6,
 #A2D_12bit_converter_reader_and_output_generater test
 
 assert read_12bit_A2D_converter_and_generate_output([0, 400, 200, 1146]) == ([[0, 3]], [4])
+
+#ignoring error readings tests
 assert read_12bit_A2D_converter_and_generate_output([0, 400, 200, 1146, 2047, 2456, 4095]) == ([[0, 3], [5, 6]], [4, 2])
+assert read_12bit_A2D_converter_and_generate_output([4095, 4096, 4097, 4098, 4099]) == ([], [])
+
+#12bit_input_into_amps_converter test
+
+assert convert_12bit_A2D_value_to_current_amps(0) == 0
+assert convert_12bit_A2D_value_to_current_amps(400) == 1
+assert convert_12bit_A2D_value_to_current_amps(4094) == 10
+
 
