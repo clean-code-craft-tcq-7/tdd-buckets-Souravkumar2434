@@ -1,0 +1,68 @@
+Software Requirements:-
+
+1) the input data should be valid
+   a) Input should be a list type
+2) Continuous Range should be found
+   a) for a single value it should be empty
+   b) for empty list also it should be empty
+3) Number of readings in a continuous range should be found
+4) Output of the continuous range and number of readings should be in a csv format
+5) The software should consider readings from 0 - 4094 as valid i.e 0 - 10amps for 12-bit A2D converter.
+	a) A value over 4094 is invalid and it should be discarded.
+	b) A2D value to current value conversion mechanism should be there and it should be rounded off to nearest integer.
+6) The software should consider readings from 0 - 1-23 as valid i.e -15amps - 15amps for 10bit A2D converter.
+    a) Absolute value of current should be considered for calculating range.
+
+Assumptions:-
+
+1) Continuous range for single value should be empty.
+
+
+Test Requirements:-
+
+1) To validate input data
+   a) pass string as input data, the function should return False as output.
+   b) pass list as input data, the function should return True as output.
+
+2) To find continuous range
+   a) pass [], continuous range should be [].
+   b) pass [1] as input, continuous range should be [].
+   c) pass [4,5] as input, continuous range should be [[4,5]].
+   d) pass [4,5,6] as input, continuous range should be [[4,6]].
+   e) pass [4,6,5,7] as input, continuous range should be [[4,7]].
+   f) pass [4,5,6,9,8,10] as input, continuous range should be [[4,6], [8,10]].
+
+3) To find number of readings in continuous range:-
+   a) pass [], number of readings should be [].
+   b) pass [4,5] as input, number of readings should be [2].
+   c) pass [4,5,6] as input, number of readings should be [3].
+   d) pass [4,6,5,7] as input, number of readings should be [4].
+   e) pass [4,5,6,9,8,10] as input, number of readings should be [3, 3].
+
+4) To check output of program in csv format:-
+   a) pass continuous range as [[4, 5]] and number of readings as [2], output should be "Range, Readings\n4-5, 2"
+   b) pass continuous range as [[4, 5], [7, 8]] and number of readings as [2, 2], output should be "Range, Readings\n4-5, 2\n7-8, 2"
+
+5) To convert the 12 bit A2D value in amps:-
+   a) pass 0 as input, current value should be 0amps.
+   b) pass 4094 as input, current value should be 10amps.
+   c) pass 4095 as input, invalid input should be returned.
+   d) pass 1146 as input, current value should be 3amps.
+   
+6) to find continuous range and number of readings when 12bit A2D values are passed:-
+   a) pass [0, 400, 700, 1146] as input, continuous range and number of readings should be ([[0, 3]], [4]).
+   b) pass [0, 400, 700, 1146, 2047, 2456, 4095] as input, continuous range and number of readings should be ([[0, 3], [5, 6]], [4, 2]).
+   c) pass [4095, 4096, 4097, 4098, 4099] as input, continuous range and number of readings should be ([], []).
+   
+7) To convert the 10-bit A2D value in amps:-
+   a) pass 0 as input, current value should be -15amps.
+   b) pass 511 as input, current value should be 0amps.
+   c) pass 1022 as input, current value should be 15amps.
+
+8) to find continuous range and number of readings when 10bit A2D values are passed:-
+   a) pass [0, 34, 68, 102] as input, continuous range and number of readings should be ([[12, 15]], [4]).
+   b) pass [0, 34, 68, 102, 511, 545, 580] as input, continuous range and number of readings should be ([[0, 2], [12, 15]], [3, 4]).
+   c) pass [1024, 1025, 1026, 1027, 1028] as input, continuous range and number of readings should be ([], []).
+   
+   
+
